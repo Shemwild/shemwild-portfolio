@@ -1,3 +1,3 @@
-:HL["/shemwild-portfolio/_next/static/chunks/16i7xnrlse8ah.css","style"]
+:HL["/shemwild-portfolio/_next/static/chunks/15nse0etf63rt.css","style"]
 :HL["/shemwild-portfolio/_next/static/chunks/0ejz2abdy-8e9.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"nTbkpsOEZ8lfqarzeMeqg"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"2zRE47TiagZb6O5amMIbx"}
