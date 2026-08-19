@@ -1,10 +1,9 @@
 "use client";
-import { cn } from "@/lib/utils";
+import { assetUrl, cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import {
   AnimatePresence,
   motion,
-  animate,
   useAnimationControls,
 } from "motion/react";
 
@@ -25,6 +24,7 @@ const NyanCat = () => {
     };
     setDivs((prevDivs) => [...prevDivs, newDiv]);
   };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "n") spawnDiv();
@@ -34,7 +34,7 @@ const NyanCat = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  });
+  }, []);
 
   return (
     <div className="fixed left-0 top-0 w-screen h-screen overflow-hidden z-[-1]">
@@ -68,7 +68,6 @@ const AnimatedDiv = ({
   onCompleted: () => void;
 }) => {
   const randY = getRandomHeight();
-
   const controls = useAnimationControls();
 
   React.useEffect(() => {
@@ -77,11 +76,7 @@ const AnimatedDiv = ({
       y: randY,
       transition: { duration: 5, ease: "linear" },
     });
-  }, [controls]);
-
-  const handlePause = () => {
-    onClick();
-  };
+  }, [controls, randY]);
 
   return (
     <motion.div
@@ -89,10 +84,10 @@ const AnimatedDiv = ({
       initial={{ x: "-20vw", y: randY }}
       animate={controls}
       onAnimationComplete={onCompleted}
-      onClick={handlePause}
+      onClick={onClick}
     >
       <img
-        src="/assets/nyan-cat.gif"
+        src={assetUrl("/assets/nyan-cat.gif")}
         className={cn("fixed z-10 h-40 w-auto")}
         alt="Nyan Cat"
       />

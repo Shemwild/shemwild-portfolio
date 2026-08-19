@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
+import { assetUrl } from "@/lib/utils";
 
 export const useSounds = () => {
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -14,21 +15,25 @@ export const useSounds = () => {
         const ctx = new AudioContext();
         audioContextRef.current = ctx;
 
-        const response = await fetch('/assets/keycap-sounds/press.mp3');
-        const arrayBuffer = await response.arrayBuffer();
-        const decodedBuffer = await ctx.decodeAudioData(arrayBuffer);
-        pressBufferRef.current = decodedBuffer;
+        const response = await fetch(assetUrl('/assets/keycap-sounds/press.mp3')).catch(() => null);
+        if (response && response.ok) {
+          const arrayBuffer = await response.arrayBuffer();
+          pressBufferRef.current = await ctx.decodeAudioData(arrayBuffer).catch(() => null);
+        }
 
-        const releaseResponse = await fetch('/assets/keycap-sounds/release.mp3');
-        const releaseArrayBuffer = await releaseResponse.arrayBuffer();
-        const releaseDecodedBuffer = await ctx.decodeAudioData(releaseArrayBuffer);
-        releaseBufferRef.current = releaseDecodedBuffer;
+        const releaseResponse = await fetch(assetUrl('/assets/keycap-sounds/release.mp3')).catch(() => null);
+        if (releaseResponse && releaseResponse.ok) {
+          const releaseArrayBuffer = await releaseResponse.arrayBuffer();
+          releaseBufferRef.current = await ctx.decodeAudioData(releaseArrayBuffer).catch(() => null);
+        }
 
-        const confettiResponse = await fetch('/assets/sounds/vine-boom.mp3');
-        const confettiArrayBuffer = await confettiResponse.arrayBuffer();
-        confettiBufferRef.current = await ctx.decodeAudioData(confettiArrayBuffer);
+        const confettiResponse = await fetch(assetUrl('/assets/sounds/vine-boom.mp3')).catch(() => null);
+        if (confettiResponse && confettiResponse.ok) {
+          const confettiArrayBuffer = await confettiResponse.arrayBuffer();
+          confettiBufferRef.current = await ctx.decodeAudioData(confettiArrayBuffer).catch(() => null);
+        }
       } catch (error) {
-        console.error("Failed to load keycap sound", error);
+        /* silent fallback */
       }
     };
 

@@ -23,10 +23,10 @@ const config = {
   ],
   author: "Shemaiah Paramesvaran",
   email: "nambikkai6@gmail.com",
-  site: "https://shemaiah-paramesvaran.vercel.app",
+  site: "https://shemwild.com",
 
   githubUsername: "Shemwild",
-  githubRepo: "shemaiahnewweb",
+  githubRepo: "shemwild-portfolio",
 
   get ogImg() {
     return this.site + "/assets/seo/og-image.png";
