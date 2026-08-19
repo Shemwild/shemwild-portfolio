@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  cacheComponents: true,
-  devIndicators: { devtools: { enabled: false } },
-  eslint: {
-    ignoreDuringBuilds: true
+  output: "export",
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
+  images: {
+    unoptimized: true,
   },
+  devIndicators: { devtools: { enabled: false } },
   async headers() {
     return [
       {
